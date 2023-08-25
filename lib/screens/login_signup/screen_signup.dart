@@ -20,7 +20,7 @@ class SignUp extends StatelessWidget {
         padding: EdgeInsets.only(top: 50, right: 32, left: 32),
         child: SingleChildScrollView(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               space(30),
               title_login_signup(loginStatus: isLogin),

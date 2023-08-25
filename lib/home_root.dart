@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:shopping_app/screens/forgot/screen_forgot.dart';
 import 'package:shopping_app/screens/home/screen_home.dart';
 import 'package:shopping_app/screens/search/screen_search.dart';
 import 'package:shopping_app/utilities/colors.dart';
@@ -23,7 +22,7 @@ class _HomeRootState extends State<HomeRoot> {
     Text('about us'),
   ];
   int currentIndex = 0;
-
+  String theme="dd";
 
   @override
   Widget build(BuildContext context) {
@@ -87,7 +86,7 @@ class _HomeRootState extends State<HomeRoot> {
               ),
               SizedBox(height: 30),
               SizedBox(
-                 // height: 400,
+                // height: 400,
                 child: ListView.builder(
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
@@ -104,52 +103,73 @@ class _HomeRootState extends State<HomeRoot> {
               //   ),
               // ),
 
-              SizedBox(height: 20,),
+              SizedBox(
+                height: 20,
+              ),
               Center(
                 child: Container(
-                  width: 227,
+                  width: 200,
                   height: 40,
                   decoration: BoxDecoration(
-                    color: Colors.grey[300],
-                    borderRadius: BorderRadius.circular(20)
-                  ),
+                      color: Color(0xffF4F4F4),
+                      borderRadius: BorderRadius.circular(20)),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.all(5),
-                        child: Container(
-                          width: 100,
-                          height: 30,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(20)
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              SvgPicture.asset("assets/icons/light.svg"),
-                              Text("Light", style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400),)
-                            ],
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(5),
-                        child: Container(
+                      GestureDetector(
+                        onTap: (){
+                          setState(() {
+                            theme="light";
+                          });
+                        },
+                        child:theme=="light"? Container(
                           width: 100,
                           height: 30,
                           decoration: BoxDecoration(
                               color: Colors.white,
-                              borderRadius: BorderRadius.circular(20)
+                              borderRadius: BorderRadius.circular(20),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.shade300,
+                                  spreadRadius: 1,
+                                  blurRadius: 5,
+                                )
+                              ]),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              SvgPicture.asset("assets/icons/light.svg"),
+                              Text(
+                                "Light",
+                                style: TextStyle(
+                                    fontSize: 15, fontWeight: FontWeight.w400),
+                              )
+                            ],
                           ),
+                        ):null,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(5),
+                        child: Container(
+                          width: 20,
+                          height: 30,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(20),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.shade300,
+                                  spreadRadius: 1,
+                                  blurRadius: 5,
+                                )
+                              ]),
+                          ),
+
                         ),
-                      )
                     ],
                   ),
                 ),
               )
-
             ],
           )),
       bottomNavigationBar: Container(
@@ -178,8 +198,6 @@ class _HomeRootState extends State<HomeRoot> {
       body: pages[currentIndex],
     );
   }
-
-
 
   Widget drawerCard(int index) {
     return GestureDetector(
